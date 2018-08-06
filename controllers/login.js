@@ -6,7 +6,7 @@ const hashpass = (password) =>{
     return new Promise((resolve, reject) =>{
         bcrypt.genSalt((err, salt) =>{
             if(err){
-                console.log(err)
+                reject(err)
             }else{
                 bcrypt.hash(password, salt,(err, hash)=>{
                     if(err){
@@ -32,13 +32,13 @@ const login = (req, res) => {
 const FormUser = (req, res) => {
     res.render('login/create')
 }
-
+//bcrypt save hash
 const createUser =  async (connection, req, res) => {
     req.body.password = await hashpass(req.body.password)
     await User.createUser(connection, req.body)
     res.redirect('/login')
 }
-//bcrypt hash
+//bcrypt compare hash
 const authenticateUser = async (connection,  req, res) => {
     
     const user = await User.findUser(connection, req.body.username)
