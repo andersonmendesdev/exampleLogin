@@ -1,6 +1,7 @@
 # Login com mysql
 
-A base dados deve ser criada manualmente
+A base dados deve ser criada manualmente, e o arquivo da pasta database 
+deve ser configurado de acordo com suas credenciais do mysql.
 ```bash
 database name: myapp
 ```
