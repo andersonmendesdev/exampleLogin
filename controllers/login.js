@@ -21,7 +21,7 @@ const authenticateUser = async (connection,  req, res) => {
     req.session.user = user
     res.redirect('/')
 }
-const logoutUser = async(req, res) => {
+const logoutUser = (req, res) => {
     req.session.destroy(() => {
         res.redirect('/login')
     })
