@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 
-//generator bcrypt hash and salt
+//generator bcrypt salt and hash
 const hashpass = (password) =>{
     return new Promise((resolve, reject) =>{
         bcrypt.genSalt((err, salt) =>{
