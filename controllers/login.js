@@ -1,5 +1,8 @@
 const User = require('../models/user')
 const login = (req, res) => {
+    if(req.session.user){
+        return res.redirect('/')
+    }
     res.render('login/login',{error: false})
 }
 
@@ -12,7 +15,7 @@ const createUser =  async (connection, req, res) => {
     res.redirect('/login')
 }
 const authenticateUser = async (connection,  req, res) => {
-    console.log(req.body)
+    
     const user = await User.findUser(connection, req.body.username)
     if(!user){
         return res.render('login/login',{error: true})
