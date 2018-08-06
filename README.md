@@ -15,7 +15,7 @@ Inicilizar servidor
 yarn start
 ```
 Para Criar um nivel de privilegios seria muito simples apenas adicionando uma role a 
-cada usuario e seria necessario implementar um middleware antes de cada rota de privelegios.
+cada usuario e seria necessario implementar um middleware antes de cada rota.
 
 
 Ex: Criar a rota /administrador.
@@ -25,11 +25,7 @@ Cria se um middleware na autenticação para adicionar a role a session.
 ```bash
 router.use((req, res, next) => {
     if(!req.session.user)){
-        res.locals.user = req.session.user
-        if(!req.session.roles){
-            res.locals.roles = req.session.roles
-        }
-        
+        res.locals.user = req.session.user        
     }
     next()
 })
@@ -40,7 +36,7 @@ Ex: /administrador
 ```bash
 router.use((req, res, next) => {
     if(req.session.user){
-        if(req.locals.role.indexOf('administrador')>=0){
+        if(req.locals.user.role.indexOf('administrador')>=0){
             return next()
         }else{
             res.redirect('/administrador')
