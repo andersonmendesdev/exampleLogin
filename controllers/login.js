@@ -12,6 +12,7 @@ const createUser =  async (connection, req, res) => {
     res.redirect('/login')
 }
 const authenticateUser = async (connection,  req, res) => {
+    console.log(req.body)
     const user = await User.findUser(connection, req.body.username)
     if(!user){
         return res.render('login/login',{error: true})
