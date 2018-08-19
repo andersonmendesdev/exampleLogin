@@ -12,7 +12,8 @@ router.use((req, res, next) => {
 //middleware add user in locals home
 router.use((req,res, next) =>{
     if('user' in req.session){
-        res.locals.user = req.session.user    
+        res.locals.user = req.session.user
+        res.locals.currentUser = req.session.user
     }
     next()
 

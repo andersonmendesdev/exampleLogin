@@ -27,6 +27,7 @@ app.use(express.static('public'))
 //routes
 require('./routes/login')(app)
 require('./routes/home')(app)
+require('./routes/administrator')(app)
 
 
 http.listen(port, () => console.log('Running in port '+port))
